@@ -14,5 +14,8 @@ namespace Blog.DataAccess
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<NewPost> Posts { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
     }
 }
