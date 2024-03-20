@@ -8,7 +8,7 @@ namespace Blog_AppServices.API.DTO
 {
     public class PostDto
     {
-        public string FormattedDate { get; set; }
+        public string PostedDate { get; set; }
         public int UserId { get; set; }
         public string Topic { get; set; }
 

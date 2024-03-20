@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Blog.DataAccess.Entities;
-using Blog.DataAccess;
 using MediatR;
 using Blog_AppServices.API.Domain;
 

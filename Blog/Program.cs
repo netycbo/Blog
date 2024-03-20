@@ -4,6 +4,8 @@ using Blog.DataAccess;
 using MediatR;
 using Blog.AppServices.API.Handlers;
 using System.Reflection;
+using Blog_AppServices.Mappings;
+using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -19,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BlogstorageContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDatabaseConnection")));
 builder.Services.AddMediatR(typeof(GetPostsHandler).GetTypeInfo().Assembly);
+builder.Services.AddAutoMapper(typeof(UserProfile).GetTypeInfo().Assembly);
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

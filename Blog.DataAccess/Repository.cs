@@ -13,40 +13,40 @@ namespace Blog.DataAccess
             _context = context;
             _dbSet = context.Set<T>();
         }
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             T entity = _dbSet.SingleOrDefault(x => x.Id == id);
             _dbSet.Remove(entity);
-            _context.SaveChanges();
+           return _context.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public Task<List<T>> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet.ToListAsync();
         }
 
-        public T GetById(int id)
+        public Task<T> GetById(int id)
         {
-            return _dbSet.SingleOrDefault(x => x.Id == id);
+            return _dbSet.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Insert(T entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
-            _dbSet.Add(entity);
-            _context.SaveChanges();
-        }
-
-        public void Update(T entity)
+        public Task Insert(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _context.SaveChanges();
+            _dbSet.AddAsync(entity);
+           return _context.SaveChangesAsync();
+        }
+
+        public Task Update(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+           return _context.SaveChangesAsync();
         }
     }
 }
