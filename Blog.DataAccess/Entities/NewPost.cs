@@ -9,7 +9,7 @@ namespace Blog.DataAccess.Entities
         [Required]
         public int AdminId { get; set; }
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         [MaxLength(20)]
         public string Topic { get; set; }
         public string Content { get; set; }

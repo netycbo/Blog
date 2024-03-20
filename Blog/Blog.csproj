@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blog,AppServices\Blog_AppServices.csproj" />
-    <ProjectReference Include="..\Blog.DataAccess\Blog.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
