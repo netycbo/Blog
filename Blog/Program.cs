@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using Blog.DataAccess;
 using MediatR;
 using Blog.AppServices.API.Handlers;
 using System.Reflection;
 using Blog_AppServices.Mappings;
-using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
+using Blog.DataAccess.CQRS;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +20,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BlogstorageContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDatabaseConnection")));
 builder.Services.AddMediatR(typeof(GetPostsHandler).GetTypeInfo().Assembly);
-builder.Services.AddAutoMapper(typeof(UserProfile).GetTypeInfo().Assembly);
+builder.Services.AddAutoMapper(typeof(UserProfile).GetTypeInfo().Assembly, typeof(UserProfile).Assembly);
+builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+builder.Services.AddTransient<ICommandsExecutor, CommandsExecutor>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 

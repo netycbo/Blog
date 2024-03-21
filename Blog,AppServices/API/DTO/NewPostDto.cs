@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blog_AppServices.API.DTO
 {
-    public class PostDto
+    public class NewPostDto
     {
         public string PostedDate { get; set; }
         public int UserId { get; set; }

@@ -16,16 +16,16 @@ namespace Blog.AppServices.API.Handlers
             _commentsRepository = commentsRepository;
             _mapper = mapper;
         }
-        public Task<GetCommentsRersponse> Handle(GetCommentsRequests request, CancellationToken cancellationToken)
+        public async Task<GetCommentsRersponse> Handle(GetCommentsRequests request, CancellationToken cancellationToken)
         {
-            var comments = _commentsRepository.GetAll();
+            var comments =  await _commentsRepository.GetAll();
            var mappedData = _mapper.Map<List<CommentsDto>>(comments);
 
             var response = new GetCommentsRersponse()
             {
                 Data = mappedData
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

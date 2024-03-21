@@ -16,16 +16,16 @@ namespace Blog.AppServices.API.Handlers
             _postRepository = postRepository;
             _mapper = mapper;
         }
-        public Task<GetPostsResponse> Handle(GetPostsRequests request, CancellationToken cancellationToken)
+        public async Task<GetPostsResponse> Handle(GetPostsRequests request, CancellationToken cancellationToken)
         {
-            var posts = _postRepository.GetAll();
-           var mappedData = _mapper.Map<List<PostDto>>(posts);
+            var posts = await _postRepository.GetAll();
+           var mappedData = _mapper.Map<List<NewPostDto>>(posts);
 
             var response = new GetPostsResponse()
             {
                 Data = mappedData
             };
-            return Task.FromResult(response);
+            return response;
         }       
     }
 }
