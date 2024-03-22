@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Blog.DataAccess.Entities;
+using Blog_AppServices.API.Domain.Post;
 using Blog_AppServices.API.DTO;
 
 namespace Blog_AppServices.Mappings
@@ -16,6 +17,8 @@ namespace Blog_AppServices.Mappings
                 .ForMember(x => x.NickName, o => o.MapFrom(src => src.NickName))
                 .ForMember(x => x.Role, o => o.MapFrom(src => src.IsAdmin ? "Admin" : "User"))
                 .ForMember(x=> x.Name, o=>o.MapFrom(src=>src.Name));
+
+            CreateMap<AddNewUserRequest, User>();
 
 
         }

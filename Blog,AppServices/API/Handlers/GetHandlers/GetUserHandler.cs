@@ -1,18 +1,18 @@
 ﻿using MediatR;
-using Blog_AppServices.API.Domain;
 using Blog.DataAccess.CQRS.Queries;
 using Blog.DataAccess.Entities;
 using Blog.DataAccess;
 using Blog_AppServices.API.DTO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using AutoMapper;
-namespace Blog.AppServices.API.Handlers
+using Blog_AppServices.API.Domain.Get;
+namespace Blog_AppServices.API.Handlers.GetHandlers
 {
     public class GetUserHandler : IRequestHandler<GetUsersRequest, GetUserResponse>
     {
         private readonly IQueryExecutor _queryExecutor;
         private readonly IMapper _mapper;
-        public GetUserHandler( IMapper mapper, IQueryExecutor queryExecutor)
+        public GetUserHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
             _mapper = mapper;
             _queryExecutor = queryExecutor;

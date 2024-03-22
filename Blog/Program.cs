@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Blog.DataAccess;
 using MediatR;
-using Blog.AppServices.API.Handlers;
 using System.Reflection;
 using Blog_AppServices.Mappings;
 using Blog.DataAccess.CQRS;
+using Blog_AppServices.API.Handlers.GetHandlers;
+using Blog_AppServices.API.Handlers.PostHandlers;
 
 
 
@@ -20,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BlogstorageContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDatabaseConnection")));
 builder.Services.AddMediatR(typeof(GetPostsHandler).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(AddNewUserHandler).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(UserProfile).GetTypeInfo().Assembly, typeof(UserProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 builder.Services.AddTransient<ICommandsExecutor, CommandsExecutor>();

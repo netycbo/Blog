@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.DataAccess.Entities;
 using Blog_AppServices.API.DTO;
+using Blog_AppServices.API.Domain.Post;
 
 namespace Blog_AppServices.Mappings
 {
@@ -13,6 +14,8 @@ namespace Blog_AppServices.Mappings
                 .ForMember(x => x.Comment, o => o.MapFrom(src=>src.Comment))
                 .ForMember(x => x.UserId, o => o.MapFrom(src => src.UserId))
                 .ForMember(x => x.PostId, o => o.MapFrom(src => src.PostId));
+
+            CreateMap<AddNewCommentRequest, Comments>();
         }
     }
 }

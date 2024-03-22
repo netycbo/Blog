@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using AutoMapper;
-using Blog_AppServices.API.Domain;
 using Blog.DataAccess.Entities;
 using Blog.DataAccess;
 using Blog_AppServices.API.DTO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-namespace Blog.AppServices.API.Handlers
+using Blog_AppServices.API.Domain.Get;
+namespace Blog_AppServices.API.Handlers.GetHandlers
 {
     public class GetPostsHandler : IRequestHandler<GetPostsRequests, GetPostsResponse>
     {
@@ -19,16 +19,16 @@ namespace Blog.AppServices.API.Handlers
         public async Task<GetPostsResponse> Handle(GetPostsRequests request, CancellationToken cancellationToken)
         {
             var posts = await _postRepository.GetAll();
-           var mappedData = _mapper.Map<List<NewPostDto>>(posts);
+            var mappedData = _mapper.Map<List<NewPostDto>>(posts);
 
             var response = new GetPostsResponse()
             {
                 Data = mappedData
             };
             return response;
-        }       
+        }
     }
 }
-   
-    
+
+
 

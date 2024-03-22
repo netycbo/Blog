@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MediatR;
+
+using System.ComponentModel.DataAnnotations;
 
 
-namespace Blog.DataAccess.Entities
+namespace Blog_AppServices.API.Domain.Post
 {
-    public class User : EntityBase
+    public class AddNewUserRequest :IRequest<AddNewUserResponse>
     {
         [Required]
         [MaxLength(30)]
@@ -15,10 +17,6 @@ namespace Blog.DataAccess.Entities
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
-        [Required]
-        public bool IsAdmin { get; set; }
-        [Required]
-        public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Blog.DataAccess.CQRS.Commands
 {
-    public class AddUserCommand : CommandsBase<User, User>
+    public class AddNewUserCommand : CommandsBase<User, User>
     {
         public override async Task<User> Execute(BlogstorageContext context)
         {

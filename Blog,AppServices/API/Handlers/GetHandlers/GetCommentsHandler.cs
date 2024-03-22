@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using Blog_AppServices.API.Domain;
 using AutoMapper;
 using Blog.DataAccess.Entities;
 using Blog.DataAccess;
 using Blog_AppServices.API.DTO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-namespace Blog.AppServices.API.Handlers
+using Blog_AppServices.API.Domain.Get;
+namespace Blog_AppServices.API.Handlers.GetHandlers
 {
     public class GetCommentsHandler : IRequestHandler<GetCommentsRequests, GetCommentsRersponse>
     {
@@ -18,8 +18,8 @@ namespace Blog.AppServices.API.Handlers
         }
         public async Task<GetCommentsRersponse> Handle(GetCommentsRequests request, CancellationToken cancellationToken)
         {
-            var comments =  await _commentsRepository.GetAll();
-           var mappedData = _mapper.Map<List<CommentsDto>>(comments);
+            var comments = await _commentsRepository.GetAll();
+            var mappedData = _mapper.Map<List<CommentsDto>>(comments);
 
             var response = new GetCommentsRersponse()
             {

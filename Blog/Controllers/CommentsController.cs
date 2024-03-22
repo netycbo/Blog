@@ -1,4 +1,4 @@
-﻿using Blog_AppServices.API.Domain;
+﻿using Blog_AppServices.API.Domain.Get;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
