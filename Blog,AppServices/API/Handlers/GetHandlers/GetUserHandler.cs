@@ -19,7 +19,11 @@ namespace Blog_AppServices.API.Handlers.GetHandlers
         }
         public async Task<GetUserResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetUserQuery();
+            var query = new GetUserQuery()
+            {
+                Name = request.Name
+            };
+
             var users = await _queryExecutor.Execute(query);
             var mappedUser = _mapper.Map<List<UserDto>>(users);
             var response = new GetUserResponse()

@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Blog_AppServices.API.Domain.Get;
+using Blog_AppServices.API.Domain.Delete;
 
 namespace Blog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class DeletePostController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public UserController(IMediator mediator)
+        public DeletePostController(IMediator mediator)
         {
             _mediator = mediator;
         }
-        [HttpGet]
-        [Route("")]
-        public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)
+        [HttpDelete]
+        public async Task<IActionResult> DeletePost([FromBody] DeletePostRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);

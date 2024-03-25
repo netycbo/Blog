@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.DataAccess.Entities;
 using Blog_AppServices.API.Domain.Post;
+using Blog_AppServices.API.Domain.Put;
 using Blog_AppServices.API.DTO;
 
 namespace Blog_AppServices.Mappings
@@ -19,6 +20,7 @@ namespace Blog_AppServices.Mappings
                 .ForMember(x=> x.Name, o=>o.MapFrom(src=>src.Name));
 
             CreateMap<AddNewUserRequest, User>();
+            CreateMap<ChangeRoleResponse, User>();
 
 
         }

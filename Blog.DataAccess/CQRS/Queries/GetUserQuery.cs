@@ -6,11 +6,21 @@ namespace Blog.DataAccess.CQRS.Queries
 {
     public class GetUserQuery : QueryBase<List<User>>
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
         public override Task<List<User>> Execute(BlogstorageContext context)
         {
-            return  context.Users.ToListAsync();
-               
+            if (Name != null)
+            {
+                return context.Users
+                    .Where(x => x.Name == Name)
+                    .ToListAsync();
+            }
+            else
+            {
+                return context.Users
+                    .ToListAsync();
+            }
+          
         }
     }
 }

@@ -2,6 +2,7 @@
 using Blog.DataAccess.Entities;
 using Blog_AppServices.API.DTO;
 using Blog_AppServices.API.Domain.Post;
+using Blog_AppServices.API.Domain.Delete;
 namespace Blog_AppServices.Mappings
 {
     public class NewPostProfile : Profile
@@ -14,6 +15,7 @@ namespace Blog_AppServices.Mappings
                 .ForMember(x=>x.Topic, o=>o.MapFrom(src=>src.Topic));
 
             CreateMap<AddNewPostRequest, NewPost>();
+            CreateMap<DeletePostResponse, NewPostDto>();
         }
     }
 }

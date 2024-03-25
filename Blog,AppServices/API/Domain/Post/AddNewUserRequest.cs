@@ -17,6 +17,7 @@ namespace Blog_AppServices.API.Domain.Post
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
+        public string Role { get; set; }
 
     }
 }
