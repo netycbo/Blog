@@ -7,19 +7,19 @@ namespace Blog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddNewUserController : ControllerBase
+    public class AddNewUserController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
-        public AddNewUserController(IMediator mediator)
+        
+        public AddNewUserController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
+
         }
+       
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddNewUser ([FromBody] AddNewUserRequest request)
         {
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            return await HandleRequest<AddNewUserRequest, AddNewUserResponse>(request);
         }
     }
 }

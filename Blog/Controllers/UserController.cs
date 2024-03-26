@@ -7,13 +7,14 @@ namespace Blog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : ApiControllerBase
     {
-        private readonly IMediator _mediator;
-        public UserController(IMediator mediator)
+       
+        public UserController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
+
         }
+        
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllUsers([FromQuery] GetUsersRequest request)

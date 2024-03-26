@@ -6,6 +6,9 @@ using Blog_AppServices.Mappings;
 using Blog.DataAccess.CQRS;
 using Blog_AppServices.API.Handlers.GetHandlers;
 using Blog_AppServices.API.Handlers.PostHandlers;
+using Blog_AppServices.API.Validators;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -19,12 +22,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BlogstorageContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDatabaseConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDatabaseConnection")));
 builder.Services.AddMediatR(typeof(GetPostsHandler).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(AddNewUserHandler).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(UserProfile).GetTypeInfo().Assembly, typeof(UserProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 builder.Services.AddTransient<ICommandsExecutor, CommandsExecutor>();
+builder.Services.AddMvcCore().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewUserValidator>());
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+        {options.SuppressModelStateInvalidFilter = true;});
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
